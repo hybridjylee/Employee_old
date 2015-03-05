@@ -23,7 +23,7 @@ public class SpringJdbcDeptDao implements DeptDao {
 	static Logger log = Logger.getLogger(SpringJdbcDeptDao.class);
 	@Override
 	public void setDataSouce(DataSource ds) {
-		dataSoure=ds;
+		dataSoure = ds;
 	}
 	
 	@Override
@@ -33,11 +33,11 @@ public class SpringJdbcDeptDao implements DeptDao {
 		log.info("###########################");
 		
 		JdbcTemplate template = new JdbcTemplate(dataSoure);
-		Dept dept = template.queryForObject(SELECT_BY_DEPTNO,new BeanPropertyRowMapper<Dept>(Dept.class), deptno); // NULL로들어감 try catch에서처리
+		Dept dept = template.queryForObject(SELECT_BY_DEPTNO, new BeanPropertyRowMapper<Dept>(Dept.class), deptno); // NULL로들어감 try catch에서처리
 		return dept;
 	}
 	
-	class DeptResultSetExtractor implements ResultSetExtractor<Dept>{
+	class DeptResultSetExtractor implements ResultSetExtractor<Dept> {
 		/*
 		 *  매핑처리
 		 */ 
@@ -76,7 +76,7 @@ public class SpringJdbcDeptDao implements DeptDao {
 	}
 	
 	@Override
-	public Dept selectByDeptnoWithEmps(Integer deptno){
+	public Dept selectByDeptnoWithEmps(Integer deptno) {
 		log.info("###########################");
 		log.info("selectByDeptnoWithEmps("+ deptno +")");
 		log.info("###########################");
@@ -91,12 +91,17 @@ public class SpringJdbcDeptDao implements DeptDao {
 
 	@Override
 	public List<Dept> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("###########");
+		log.info("selectAll()");
+		log.info("###########");
+		
+		JdbcTemplate template = new JdbcTemplate(dataSoure);
+		
+		return template.query(SELECT_ALL, new BeanPropertyRowMapper<Dept>(Dept.class));
 	}
 
 	@Override
-	public List<Dept> selectWithEmps() {
+	public List<Dept> selectAllWithEmps() {
 		// TODO Auto-generated method stub
 		return null;
 	}

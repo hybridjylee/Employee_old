@@ -3,6 +3,7 @@ package webapp.service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -32,19 +33,29 @@ public class DeptInfoService {
 	public void setDeptDao(DeptDao dao){
 		deptdao = dao;
 	}
+	
 	public void setDataSource(DataSource ds){
 		dataSource=ds;
 	}
 	
 	public Dept getDeptInfo(Integer deptno){
-		Dept dept=null;
-		dept = deptdao.selectByDeptno(deptno);
+		
+		Dept dept = deptdao.selectByDeptno(deptno);
 
 		return dept;
 	}
+	
 	public Dept getDeptInfoWithEmps(Integer deptno){
+		
 		Dept dept = deptdao.selectByDeptnoWithEmps(deptno);
 		
 		return dept;			
+	}
+	
+	public List<Dept> getDeptInfoAll() {
+		
+		List<Dept> list = deptdao.selectAll();
+		
+		return list;
 	}
 }

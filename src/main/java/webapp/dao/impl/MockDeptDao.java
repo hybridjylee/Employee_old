@@ -59,7 +59,7 @@ public class MockDeptDao implements DeptDao{
 	}
 
 	@Override
-	public List<Dept> selectWithEmps(){
+	public List<Dept> selectAllWithEmps(){
 		// TODO Auto-generated method stub
 		return null;
 	}

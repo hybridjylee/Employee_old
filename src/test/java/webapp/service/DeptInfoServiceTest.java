@@ -56,10 +56,21 @@ public class DeptInfoServiceTest {
 		
 		log.info(dept.getDeptno() + " " +dept.getDname());	
 		List<Emp> emps = dept.getEmps();
-			if(emps!=null){
-				for(Emp e : emps){
-					log.info(e.getEmpno() + " " +e.getEname());
-				}
+		if(emps!=null){
+			for(Emp e : emps){
+				log.info(e.getEmpno() + " " +e.getEname());
 			}
+		}
+	}
+	
+	@Test
+	public void testGetDeptInfoAll() {
+		DeptInfoService service = factory.getBean(DeptInfoService.class);
+		List<Dept> list = service.getDeptInfoAll();
+		assertNotNull(list);
+		
+		for (Dept d : list) {
+			log.info(d.getDeptno() + " " + d.getDname() + " " + d.getLoc());
+		}
 	}
 }
